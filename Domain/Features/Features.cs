@@ -2,7 +2,7 @@ using System;
 
 namespace Domain.Features;
 
-public class Feats
+public class Feature
 {
     public int Id { get; set; }
     public required string Name { get; set; }
