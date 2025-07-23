@@ -10,7 +10,7 @@ public class Armor
     public required int ACBonus { get; set; }
     public required bool Heavy { get; set; }
     public required bool Stealthy { get; set; }
-    public required bool Shield { get; set; }
+    public required bool Shield { get; init; }
     public required ArmorType Type { get; set; }
     public required int Cost { get; set; }
     public required int StrengthRequirement { get; init; }

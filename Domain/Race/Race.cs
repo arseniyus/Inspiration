@@ -10,12 +10,9 @@ namespace Domain.CharacterRace;
 
 public class Race
 {
-    public int Id { get; set; }
-    public required string Name { get; set; }
+    public int Id { get; init; }
+    public required string Name { get; init; }
     public required AbilityScores RacialAbilityScoreIncrease { get; set; }
-    // each race gets a +2 or +1 to Abilites, depends on race
-    // coupling can wait until Persistence race id => ability.value + x
-    // do I however couple racial bonuses to Domain abilities? Leaning towards yes. 
     public required Allignment SuggestedAlignment { get; set; }
     public required Creatures CreatureType { get; set; }
     public required Size CreatureSize { get; set; }
@@ -23,6 +20,21 @@ public class Race
     public Skill? RacialSkills { get; set; }
     public Feature? RacialFeature { get; set; }
     public required Proficiencies RacialProficiencies { get; set; }
-    public required Race Subrace { get; init; }
+    public required Subrace Subrace { get; init; }
+    public Spell? RacialSpells { get; set; }
+}
+
+public class Subrace
+{
+    public int Id { get; init; }
+    public required string Name { get; init; }
+    public required AbilityScores RacialAbilityScoreIncrease { get; set; }
+    public required Allignment SuggestedAlignment { get; set; }
+    public required Creatures CreatureType { get; set; }
+    public required Size CreatureSize { get; set; }
+    public required int Speed { get; set; }
+    public Skill? RacialSkills { get; set; }
+    public Feature? RacialFeature { get; set; }
+    public required Proficiencies RacialProficiencies { get; set; }
     public Spell? RacialSpells { get; set; }
 }

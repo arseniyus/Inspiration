@@ -11,7 +11,7 @@ public class Proficiency
 
     public required ProficiencyType Type { get; init; }
     public required string Description { get; set; }
-    public AbilityScore? GoverningAbility { get; set; }
+    public required AbilityScore GoverningAbility { get; set; }
 }
 
 // do an enum for prof types

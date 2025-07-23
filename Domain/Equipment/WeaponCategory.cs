@@ -1,6 +1,6 @@
 namespace Domain.Equipment;
 
-public enum WeaponType
+public enum WeaponCategory
 {
     Simple = 0,
     Martial = 1,

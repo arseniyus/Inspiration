@@ -18,7 +18,7 @@ public class Character
     public required Race Race { get; set; }
     public required CharacterClass Class { get; set; }
     public required bool MultiClass { get; set; } = false;
-    public required int CharacterLevel { get; set; }
+    public required int CharacterLevel : CharacterClass.Level { get; set; }
 
     public int ProficiencyBonus => CharacterProficiencyBonus(CharacterLevel); // function call of calculated prof. => is a Lambda operator, shorter anon functions 
     private int CharacterProficiencyBonus(int CharacterLevel) => CharacterLevel switch

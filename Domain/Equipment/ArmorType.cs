@@ -7,3 +7,20 @@ public enum ArmorType
     MediumArmor = 2,
     HeavyArmor = 3
 }
+
+public enum ArmorSubtype
+{
+    Padded,
+    Leather,
+    StuddedLeather,
+    Hide,
+    ChainShirt,
+    ScaleMail,
+    Breastplate,
+    HalfPlate,
+    RingMail,
+    ChaimMail,
+    Splint,
+    Plate,
+    Shield
+}
