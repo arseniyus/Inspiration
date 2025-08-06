@@ -18,11 +18,12 @@ public class CharacterClass
     public required CharacterEquipment StartingEquipment { get; set; }
 }
 
-public class Subclass : CharacterClass
+public class Subclass 
 {
     public int SubclassId { get; init; }
+    public required CharacterClass ParentClass { get; set; }
     public required string SubclassName { get; init; }
-    public int ClassLevel { get; set; }
+    public int CharacterLevel => ParentClass.ClassLevel;
     public Proficiency? ClassProficiencies { get; set; }
     public Feature? ClassFeatures { get; set; }
 }
