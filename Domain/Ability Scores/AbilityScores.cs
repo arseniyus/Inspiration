@@ -1,37 +1,42 @@
 using System;
-
 namespace Domain.Abilities;
 
 public class AbilityScore
 {
-    public int Id { get; init; } // will need it later for coupling in Persistence
-    public required string Name { get; init; } // will need it later for serialisation
-    private int _value = 1;
-    public required int Value
+    private int _value;
+    public AbilityScore(int value)
     {
-        get => _value;
-        set
+        if (value is < 1 or > 30)
         {
-            if ((value > 0) && (value < 31))
-            {
-                _value = value;
-            }
+            throw new ArgumentOutOfRangeException(nameof(value), "Must be between 1 - 30");
+
         }
+        _value = value;
     }
+    public int Value => _value;
     public int AbilityModifier => (int)Math.Floor((Value - 10) / 2.0);
 
-    // actual values - base value (10) / 2 to get bonus
 }
 
 public class AbilityScores
 {
-    public required AbilityScore Strength { get; set; }
-    public required AbilityScore Dexterity { get; set; }
-    public required AbilityScore Constitution { get; set; }
-    public required AbilityScore Intelligence { get; set; }
-    public required AbilityScore Wisdom { get; set; }
-    public required AbilityScore Charisma { get; set; }
+    public AbilityScore Strength { get; set; } = new(10);
+    public AbilityScore Dexterity { get; set; } = new(10);
+    public AbilityScore Constitution { get; set; } = new(10);
+    public AbilityScore Intelligence { get; set; } = new(10);
+    public AbilityScore Wisdom { get; set; } = new(10);
+    public AbilityScore Charisma { get; set; } = new(10);
 
-    
+    public AbilityScore this[AbilityType type] => type switch
+    {
+        AbilityType.Strength => Strength,
+        AbilityType.Dexterity => Dexterity,
+        AbilityType.Constitution => Constitution,
+        AbilityType.Intelligence => Intelligence,
+        AbilityType.Wisdom => Wisdom,
+        AbilityType.Charisma => Charisma,
+        _ => throw new ArgumentOutOfRangeException(nameof(type), "Invalid ability score")
+    };
 }
+
 

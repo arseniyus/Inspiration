@@ -14,12 +14,12 @@ namespace Domain;
 public class Character
 {
     public string Id { get; init; } = Guid.NewGuid().ToString();
-    public string? Name { get; set; } = string.Empty;
+    public required string Name { get; set; } = string.Empty;
     public required Race Race { get; set; }
     public required CharacterClass Class { get; set; }
-    public required bool MultiClass { get; set; } = false;
-    public int CharacterLevel { get; set; }
-
+    public bool MultiClass { get; set; } = false;
+    public List<CharacterClassProgression> CharacterProgression = new();
+    public int CharacterLevel => CharacterProgression.Sum(c => c.LevelInClass);
     public int ProficiencyBonus => CharacterProficiencyBonus(CharacterLevel); // function call of calculated prof. => is a Lambda operator, shorter anon functions 
     private int CharacterProficiencyBonus(int CharacterLevel) => CharacterLevel switch
     {
@@ -32,7 +32,7 @@ public class Character
         // this is a switch expression, more concise than prebious if/else,
     };
 
-    public required AbilityScores AbilityScores { get; set; }
+    public required AbilityScore AbilityScores { get; set; }
     public required Background Background { get; init; }
     public required CharacterEquipment Equipment { get; set; }
     public Spell? Spells { get; set; }
