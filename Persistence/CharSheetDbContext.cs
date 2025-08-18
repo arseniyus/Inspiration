@@ -16,5 +16,7 @@ public class CharSheetDbContext(DbContextOptions options) : DbContext(options)
         modelBuilder.Entity<Character>()
             .HasOne(c => c.Class)
             .WithMany();
+
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(CharSheetDbContext).Assembly);
     }
 }
