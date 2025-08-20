@@ -3,45 +3,56 @@ namespace Domain.Abilities;
 
 public class AbilityScore
 {
-    public AbilityType Ability { get; init; }
-    private readonly List<AbilityModifier> _modifiers = [];
-    public int BaseValue
+    private AbilityScore() { }
+    public AbilityScore(AbilityType ability, int baseValue)
     {
-        get => _basevalue;
-        private set => _basevalue = value; 
+        Ability = ability;
+        BaseValue = baseValue;
     }
-    private int _basevalue;
-
+    public AbilityType Ability { get; private set; }
+    public int BaseValue { get; private set; }
+    private readonly List<int> _modifiers = [];
+  
+    public int Value => BaseValue + _modifiers.Sum();
     public void SetBaseValue(int value)
     {
         if (value is < 1 or > 30)
             throw new ArgumentOutOfRangeException(nameof(value), "Must be between 1 - 30");
 
-        _basevalue = value;
+        BaseValue = value;
     }
     public AbilityScore(int value)
     {
         SetBaseValue(value);
     }
-
-    private AbilityScore() { }
-    public int Value => _basevalue + _modifiers.Sum(m => m.Value);
-
-    public void AddModifier(AbilityModifier modifier) => _modifiers.Add(modifier);
-    public void RemoveModifier(AbilityModifier modifier) => _modifiers.Remove(modifier);
+    public void UpdateBaseValue(int newValue) => BaseValue = newValue;
+    public void AddModifier(int value ) => _modifiers.Add(value);
+    public void RemoveModifier(int value) => _modifiers.Remove(value);
     public int AbilityScoreModifier => (int)Math.Floor((Value - 10) / 2.0);
 
 }
 
 public class AbilityScores
 {
-    public AbilityScore Strength { get; set; } = new(10);
-    public AbilityScore Dexterity { get; set; } = new(10);
-    public AbilityScore Constitution { get; set; } = new(10);
-    public AbilityScore Intelligence { get; set; } = new(10);
-    public AbilityScore Wisdom { get; set; } = new(10);
-    public AbilityScore Charisma { get; set; } = new(10);
+    private AbilityScores() { }
 
+    public AbilityScores WithDefaults() =>
+        new AbilityScores
+        {
+            Strength = new AbilityScore(AbilityType.Strength, 10),
+            Dexterity = new AbilityScore(AbilityType.Dexterity, 10),
+            Constitution = new AbilityScore(AbilityType.Constitution, 10),
+            Intelligence = new AbilityScore(AbilityType.Intelligence, 10),
+            Wisdom = new AbilityScore(AbilityType.Wisdom, 10),
+            Charisma = new AbilityScore(AbilityType.Charisma, 10),
+
+        };
+    public AbilityScore Strength { get; private set; }
+    public AbilityScore Dexterity { get; private set; }
+    public AbilityScore Constitution { get; private set; }
+    public AbilityScore Intelligence { get; private set; }
+    public AbilityScore Wisdom { get; private set; }
+    public AbilityScore Charisma { get; private set; }
     public AbilityScore this[AbilityType type] => type switch
     {
         AbilityType.Strength => Strength,
@@ -54,10 +65,6 @@ public class AbilityScores
     };
 }
 
-public class AbilityModifier
-{
-    public string Source { get; init;  } = string.Empty;
-    public int Value { get; init; }
-}
+
 
 

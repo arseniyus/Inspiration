@@ -1,6 +1,7 @@
 
 using System;
 using Domain;
+using Domain.Character;
 using Microsoft.EntityFrameworkCore;
 
 namespace Persistence;

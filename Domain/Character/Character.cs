@@ -9,7 +9,7 @@ using Domain.Features;
 using Domain.Equipment;
 using Domain.Backgrounds;
 
-namespace Domain;
+namespace Domain.Character;
 
 public class Character
 {
