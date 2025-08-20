@@ -18,7 +18,7 @@ public class Character
     public required Race Race { get; set; }
     public required CharacterClass Class { get; set; }
     public bool MultiClass { get; set; } = false;
-    public List<CharacterClassProgression> CharacterProgression = new();
+    public List<CharacterClassProgression> CharacterProgression = [];
     public int CharacterLevel => CharacterProgression.Sum(c => c.LevelInClass);
     public int ProficiencyBonus => CharacterProficiencyBonus(CharacterLevel); // function call of calculated prof. => is a Lambda operator, shorter anon functions 
     private int CharacterProficiencyBonus(int CharacterLevel) => CharacterLevel switch
@@ -32,7 +32,7 @@ public class Character
         // this is a switch expression, more concise than prebious if/else,
     };
 
-    public required AbilityScore AbilityScores { get; set; }
+    public required List<AbilityScore> AbilityScores { get; set; } = [];
     public required Background Background { get; init; }
     public required CharacterEquipment Equipment { get; set; }
     public Spell? Spells { get; set; }
