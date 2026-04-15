@@ -1,7 +1,7 @@
 using System;
 namespace Domain.Abilities;
 
-public class AbilityScore
+/* public class AbilityScore
 {
     private AbilityScore() { }
     public AbilityScore(AbilityType ability, int baseValue)
@@ -63,7 +63,7 @@ public class AbilityScores
         AbilityType.Charisma => Charisma,
         _ => throw new ArgumentOutOfRangeException(nameof(type), "Invalid ability score")
     };
-}
+} */
 
 
 

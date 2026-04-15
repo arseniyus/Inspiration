@@ -14,9 +14,9 @@ public class CharSheetDbContext(DbContextOptions options) : DbContext(options)
     {
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.Entity<Character>()
+/*         modelBuilder.Entity<Character>()
             .HasOne(c => c.Class)
-            .WithMany();
+            .WithMany(); */
 
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(CharSheetDbContext).Assembly);
     }

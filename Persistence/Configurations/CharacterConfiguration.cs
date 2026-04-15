@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Persistence.Configurations;
 
-public class CharacterConfiguration : IEntityTypeConfiguration<Character>
+/* public class CharacterConfiguration : IEntityTypeConfiguration<Character>
 {
     public void Configure(EntityTypeBuilder<Character> builder)
     {
@@ -48,3 +48,4 @@ public class CharacterConfiguration : IEntityTypeConfiguration<Character>
         });
     }
 }
+ */

@@ -6,7 +6,7 @@ using Domain.Features;
 
 namespace Domain.Class;
 
-public class CharacterClass
+/* public class CharacterClass
 {
     public int Id { get; init; }
     public required string Name { get; init; }
@@ -26,3 +26,4 @@ public class Subclass
     public Proficiency? ClassProficiencies { get; set; }
     public Feature? ClassFeatures { get; set; }
 }
+ */
