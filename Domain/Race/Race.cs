@@ -8,7 +8,7 @@ using Domain.Spells;
 
 namespace Domain.CharacterRace;
 
-public class Race
+/* public class Race
 {
     public int Id { get; init; }
     public required string Name { get; init; }
@@ -38,3 +38,4 @@ public class Subrace
     public required Proficiencies RacialProficiencies { get; set; }
     public Spell? RacialSpells { get; set; }
 }
+ */

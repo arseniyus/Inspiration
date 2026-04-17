@@ -1,37 +1,70 @@
 using System;
-
 namespace Domain.Abilities;
 
-public class AbilityScore
+/* public class AbilityScore
 {
-    public int Id { get; init; } // will need it later for coupling in Persistence
-    public required string Name { get; init; } // will need it later for serialisation
-    private int _value = 1;
-    public required int Value
+    private AbilityScore() { }
+    public AbilityScore(AbilityType ability, int baseValue)
     {
-        get => _value;
-        set
-        {
-            if ((value > 0) && (value < 31))
-            {
-                _value = value;
-            }
-        }
+        Ability = ability;
+        BaseValue = baseValue;
     }
-    public int AbilityModifier => (int)Math.Floor((Value - 10) / 2.0);
+    public AbilityType Ability { get; private set; }
+    public int BaseValue { get; private set; }
+    private readonly List<int> _modifiers = [];
+  
+    public int Value => BaseValue + _modifiers.Sum();
+    public void SetBaseValue(int value)
+    {
+        if (value is < 1 or > 30)
+            throw new ArgumentOutOfRangeException(nameof(value), "Must be between 1 - 30");
 
-    // actual values - base value (10) / 2 to get bonus
+        BaseValue = value;
+    }
+    public AbilityScore(int value)
+    {
+        SetBaseValue(value);
+    }
+    public void UpdateBaseValue(int newValue) => BaseValue = newValue;
+    public void AddModifier(int value ) => _modifiers.Add(value);
+    public void RemoveModifier(int value) => _modifiers.Remove(value);
+    public int AbilityScoreModifier => (int)Math.Floor((Value - 10) / 2.0);
+
 }
 
 public class AbilityScores
 {
-    public required AbilityScore Strength { get; set; }
-    public required AbilityScore Dexterity { get; set; }
-    public required AbilityScore Constitution { get; set; }
-    public required AbilityScore Intelligence { get; set; }
-    public required AbilityScore Wisdom { get; set; }
-    public required AbilityScore Charisma { get; set; }
+    private AbilityScores() { }
 
-    
-}
+    public AbilityScores WithDefaults() =>
+        new AbilityScores
+        {
+            Strength = new AbilityScore(AbilityType.Strength, 10),
+            Dexterity = new AbilityScore(AbilityType.Dexterity, 10),
+            Constitution = new AbilityScore(AbilityType.Constitution, 10),
+            Intelligence = new AbilityScore(AbilityType.Intelligence, 10),
+            Wisdom = new AbilityScore(AbilityType.Wisdom, 10),
+            Charisma = new AbilityScore(AbilityType.Charisma, 10),
+
+        };
+    public AbilityScore Strength { get; private set; }
+    public AbilityScore Dexterity { get; private set; }
+    public AbilityScore Constitution { get; private set; }
+    public AbilityScore Intelligence { get; private set; }
+    public AbilityScore Wisdom { get; private set; }
+    public AbilityScore Charisma { get; private set; }
+    public AbilityScore this[AbilityType type] => type switch
+    {
+        AbilityType.Strength => Strength,
+        AbilityType.Dexterity => Dexterity,
+        AbilityType.Constitution => Constitution,
+        AbilityType.Intelligence => Intelligence,
+        AbilityType.Wisdom => Wisdom,
+        AbilityType.Charisma => Charisma,
+        _ => throw new ArgumentOutOfRangeException(nameof(type), "Invalid ability score")
+    };
+} */
+
+
+
 
