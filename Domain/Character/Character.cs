@@ -123,7 +123,3 @@ public class Character
     // public int PlayerId { get; init; } = 0;
     // public string? PlayerName { get; set; } = string.Empty;
 }
-
-    
-
-
