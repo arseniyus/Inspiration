@@ -4,7 +4,7 @@ using Domain.Enums;
 
 namespace Domain.CharacterProficiencies;
 
-public class Proficiency
+/* public class Proficiency
 {
     public int Id { get; init; }
     public required string Name { get; init; }
@@ -21,7 +21,7 @@ public class Proficiencies
 {
     public required List<Proficiency> AllProficiencies { get; set; } = [];
 
-}
+} */
 
 // does it need to know what weapon proficiency contain at this stage? 
 // e.g. weapon proficiency, simple, martial, weapon properties, etc
